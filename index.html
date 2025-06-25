@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Mystery: Case of the Missing Wish</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #1a1a1a;
+      color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      padding: 20px;
+      text-align: center;
+    }
+    .hidden {
+      display: none;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      max-width: 90vw;
+    }
+    input {
+      padding: 10px;
+      margin-top: 10px;
+      font-size: 1rem;
+      max-width: 80vw;
+    }
+    @media screen and (max-width: 600px) {
+      h1, h2, p {
+        font-size: 1.1rem;
+      }
+      button, input {
+        font-size: 1rem;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="intro">
+    <h1>🔎 Welcome, Birthday Girl!</h1>
+    <p>Your mission: Solve the clues and find your missing birthday surprise...</p>
+    <button onclick="startGame()">Start Investigation</button>
+  </div>
+
+  <div id="clue1" class="hidden">
+    <h2>🧩 Clue 1</h2>
+    <p>What do I like to call you?</p>
+    <button onclick="checkClue1(true)">Sunshine</button>
+    <button onclick="checkClue1(true)">Montu</button>
+    <button onclick="checkClue1(true)">Shontu</button>
+    <button onclick="checkClue1(true)">All</button>
+  </div>
+
+  <div id="clue2" class="hidden">
+    <h2>🔐 Clue 2</h2>
+    <p>Enter the secret code (your birthday day joined with my birthday day DDDD format)</p>
+    <input type="text" id="codeInput" placeholder="e.g. 1531" />
+    <button onclick="checkClue2()">Unlock</button>
+  </div>
+
+  <div id="final" class="hidden">
+    <h2>🎁 Final Clue</h2>
+    <p>Knock on the door of my heart to reveal the surprise.</p>
+    <button onclick="revealSurprise()">Open the Gift</button>
+  </div>
+
+  <script>
+    function startGame() {
+      document.getElementById('intro').classList.add('hidden');
+      document.getElementById('clue1').classList.remove('hidden');
+    }
+
+    function checkClue1(correct) {
+      if (correct) {
+        document.getElementById('clue1').classList.add('hidden');
+        document.getElementById('clue2').classList.remove('hidden');
+      } else {
+        alert("Hmm... try again, Detective!");
+      }
+    }
+
+    function checkClue2() {
+      const input = document.getElementById('codeInput').value;
+      if (input === '2621') {
+        document.getElementById('clue2').classList.add('hidden');
+        document.getElementById('final').classList.remove('hidden');
+      } else {
+        alert("Incorrect code. Think about it 💭");
+      }
+    }
+
+    function revealSurprise() {
+      window.location.href = "reveal_gift.html";
+    }
+  </script>
+</body>
+</html>
